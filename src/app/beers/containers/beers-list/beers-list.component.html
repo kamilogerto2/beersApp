@@ -1,0 +1,15 @@
+<mat-form-field>
+  <mat-select placeholder="Favorite food" (selectionChange)="selectBrewer($event)">
+    <mat-option *ngFor="let brewer of brewers$ | async" [value]="brewer.name">
+      {{brewer.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-list role="list">
+  <mat-list-item *ngFor="let beer of beers$ | async; trackBy: trackBeer" role="listitem">
+    <app-beer-tile [beer]="beer"></app-beer-tile>
+  </mat-list-item>
+</mat-list>
+
+<button mat-button color="primary" (click)="loadMoreResults()">Load more</button>

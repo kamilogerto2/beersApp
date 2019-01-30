@@ -1,0 +1,7 @@
+<div>
+  <img [src]="beer.image_url">
+  <div *ngFor="let property of displayedProperties">
+    <p>{{property.toLowerCase()}}</p>
+    <p>{{beer[property]}}</p>
+  </div>
+</div>
