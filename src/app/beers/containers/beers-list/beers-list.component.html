@@ -1,16 +1,18 @@
-<mat-form-field>
-  <mat-select placeholder="Favorite food" (selectionChange)="selectBrewer($event)">
-    <mat-option *ngFor="let brewer of brewers$ | async" [value]="brewer.name">
-      {{brewer.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="BeersList">
+  <mat-form-field class="BeersList__search">
+    <mat-select placeholder="Favorite food" (selectionChange)="selectBrewer($event)">
+      <mat-option *ngFor="let brewer of brewers$ | async" [value]="brewer.name">
+        {{brewer.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<app-list-item
-  *ngFor="let beer of beers$ | async; trackBy: trackBeer"
-  role="listitem"
-  [item]="beer"
-  [displayedProperties]="displayedProperties"
-></app-list-item>
+  <app-list-item
+    *ngFor="let beer of beers$ | async; trackBy: trackBeer"
+    role="listitem"
+    [item]="beer"
+    [displayedProperties]="displayedProperties"
+  ></app-list-item>
 
-<button mat-button color="primary" (click)="loadMoreResults()">Load more</button>
+  <app-button class="BeersList__button" label="Load more" (action)="loadMoreResults()"></app-button>
+</div>

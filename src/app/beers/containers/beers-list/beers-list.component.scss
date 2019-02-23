@@ -1,0 +1,14 @@
+.BeersList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+}
+
+.BeersList__search {
+  width: 100%;
+}
+
+.BeersList__button {
+  margin: 10px;
+}
