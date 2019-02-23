@@ -1,6 +1,6 @@
 <div class="BeersList">
   <mat-form-field class="BeersList__search">
-    <mat-select placeholder="Favorite food" (selectionChange)="selectBrewer($event)">
+    <mat-select placeholder="Choose a beer" (selectionChange)="selectBrewer($event)">
       <mat-option *ngFor="let brewer of brewers$ | async" [value]="brewer.name">
         {{brewer.name}}
       </mat-option>

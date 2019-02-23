@@ -1,0 +1,30 @@
+<div class="OptionsDialog">
+  <p>Select loading step:</p>
+  <mat-slider
+    thumbLabel
+    min="1"
+    max="30"
+    step="1"
+    [value]="currentPaginationLimit"
+    (change)="changePaginationLimit($event)"
+  >
+  </mat-slider>
+
+  <mat-form-field>
+    <mat-select placeholder="Select theme" (selectionChange)="setTheme($event)">
+      <mat-option value="dark">dark</mat-option>
+      <mat-option value="light">light</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Sort by" (selectionChange)="setSortField($event)" [value]="currentSortField">
+      <mat-option value="name">name</mat-option>
+      <mat-option value="price">price</mat-option>
+      <mat-option value="type">type</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <app-button label="Close" (action)="cancel()"></app-button>
+  </div>
+</div>

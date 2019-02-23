@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule, MatListModule, MatSelectModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatListModule, MatSelectModule, MatSliderModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const importedModules = [
   CommonModule,
   HttpClientModule,
   MatSelectModule,
+  MatSliderModule,
   BrowserAnimationsModule,
   MatListModule,
   MatButtonModule,
+  MatDialogModule,
 ];
 
 @NgModule({

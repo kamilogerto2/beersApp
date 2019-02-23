@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BeerQuery, BeerService, Brewer } from '../../state/beers';
 import { Beer, BrewerQuery } from '../../state/brewers';
-import { Observable } from 'rxjs';
-import { filter, take } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { filter, map, take, takeUntil, tap, toArray } from 'rxjs/operators';
 import { PaginationService } from '../../../shared/services/pagination.service';
 import { Order } from '@datorama/akita';
 import { SortingService } from '../../../shared/services/sorting.service';
@@ -13,13 +13,14 @@ import { SortingService } from '../../../shared/services/sorting.service';
   styleUrls: ['./beers-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BeersListComponent implements OnInit {
+export class BeersListComponent implements OnInit, OnDestroy {
   @Input() currentBrewer: string;
 
   brewers$: Observable<Brewer[]>;
   beers$: Observable<Beer[]>;
   currentLimit: number;
   displayedProperties = ['name', 'price', 'type'];
+  unsubscribe$ = new Subject();
 
   constructor(
     private beerService: BeerService,
@@ -35,6 +36,14 @@ export class BeersListComponent implements OnInit {
     this.brewers$ = this.brewerQuery.selectAll();
     this.beerService.getBeers();
     this.updateBeersList();
+
+    this.sortingService.sortChange
+      .pipe(
+        takeUntil(this.unsubscribe$),
+      )
+      .subscribe(() => {
+        this.updateBeersList();
+      });
   }
 
   updateBeersList() {
@@ -42,7 +51,7 @@ export class BeersListComponent implements OnInit {
       .selectAll({
         limitTo: this.currentLimit,
         filterBy: beer => beer.brewer === this.currentBrewer,
-        sortBy: this.sortingService.currentSort,
+        sortBy: this.sortingService.comparator.bind(this.sortingService),
         sortByOrder: Order.ASC,
       })
       .pipe(
@@ -62,5 +71,10 @@ export class BeersListComponent implements OnInit {
     this.currentLimit = this.paginationService.currentLimitBreakpoint;
     this.currentBrewer = $event.value;
     this.updateBeersList();
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
