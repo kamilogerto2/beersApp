@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://ontariobeerapi.ca',
+  defaultPaginationBreakpoint: 15,
 };
 
 /*
