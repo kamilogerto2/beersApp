@@ -1,0 +1,37 @@
+@import '../../styles/general/colors';
+
+.ListItem {
+  display: flex;
+  width: 400px;
+  min-height: 50px;
+  background-color: map_get($colors, 'cararra');
+  padding: 3px 0;
+  align-items: center;
+  border-radius: 2px;
+  border: 1px solid map_get($colors, 'nobel');
+}
+
+.ListItem__property {
+  flex: 1;
+  margin: 0 2px;
+}
+
+.ListItem__property-name {
+  font-weight: 600;
+  font-size: 12px;
+  margin: 0;
+  padding-top: 10px;
+  text-transform: uppercase;
+}
+
+.ListItem__property-desc {
+  margin-top: 0;
+  font-size: 12px;
+}
+
+.ListItem__image {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 5px 15px;
+}

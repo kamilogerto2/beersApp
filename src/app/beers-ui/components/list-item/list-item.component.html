@@ -1,0 +1,7 @@
+<div class="ListItem">
+  <img *ngIf="item && item.image_url" class="ListItem__image" [src]="item.image_url">
+  <div class="ListItem__property" *ngFor="let property of displayedProperties">
+    <p class="ListItem__property-name">{{property.toLowerCase()}}</p>
+    <p class="ListItem__property-desc">{{item[property]}}</p>
+  </div>
+</div>

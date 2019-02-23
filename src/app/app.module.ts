@@ -3,18 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BeersListComponent } from './beers/containers/beers-list/beers-list.component';
-import { BeerTileComponent } from './beers/components/beer-tile/beer-tile.component';
 import { SharedModule } from './shared/shared.module';
+import { BeersUiModule } from './beers-ui/beers-ui.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     BeersListComponent,
-    BeerTileComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
+    BeersUiModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

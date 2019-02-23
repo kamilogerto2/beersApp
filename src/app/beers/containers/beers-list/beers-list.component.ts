@@ -19,6 +19,7 @@ export class BeersListComponent implements OnInit {
   brewers$: Observable<Brewer[]>;
   beers$: Observable<Beer[]>;
   currentLimit: number;
+  displayedProperties = ['name', 'price', 'type'];
 
   constructor(
     private beerService: BeerService,
