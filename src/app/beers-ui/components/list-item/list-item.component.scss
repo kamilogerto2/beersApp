@@ -35,3 +35,8 @@
   height: 40px;
   margin: 5px 15px;
 }
+
+::ng-deep .dark .ListItem {
+  background-color: map_get($colors, 'tundora');
+  color: map_get($colors, 'white');
+}

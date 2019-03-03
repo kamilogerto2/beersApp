@@ -6,16 +6,19 @@ import { filter, map, take, takeUntil, tap, toArray } from 'rxjs/operators';
 import { PaginationService } from '../../../shared/services/pagination.service';
 import { Order } from '@datorama/akita';
 import { SortingService } from '../../../shared/services/sorting.service';
+import { BeerStorageService } from '../../services/beer-storage.service';
 
 @Component({
   selector: 'app-beers-list',
   templateUrl: './beers-list.component.html',
   styleUrls: ['./beers-list.component.scss'],
+  providers: [BeerStorageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BeersListComponent implements OnInit, OnDestroy {
-  @Input() currentBrewer: string;
+  @Input() beerListIndex: number;
 
+  currentBrewer: string;
   brewers$: Observable<Brewer[]>;
   beers$: Observable<Beer[]>;
   currentLimit: number;
@@ -28,11 +31,13 @@ export class BeersListComponent implements OnInit, OnDestroy {
     private brewerQuery: BrewerQuery,
     private paginationService: PaginationService,
     private sortingService: SortingService,
-  ) {
-    this.currentLimit = this.paginationService.currentLimitBreakpoint;
-  }
+    private beerStorageService: BeerStorageService,
+  ) { }
 
   ngOnInit() {
+    this.currentLimit = this.paginationService.currentLimitBreakpoint;
+    this.beerStorageService.configure(this.beerListIndex);
+    this.currentBrewer = this.beerStorageService.selectedBrewer;
     this.brewers$ = this.brewerQuery.selectAll();
     this.beerService.getBeers();
     this.updateBeersList();
@@ -65,11 +70,14 @@ export class BeersListComponent implements OnInit, OnDestroy {
     this.updateBeersList();
   }
 
-  trackBeer(index, item) { return item.beer_id; }
+  trackBeer(index, item) {
+    return item.beer_id;
+  }
 
   selectBrewer($event) {
     this.currentLimit = this.paginationService.currentLimitBreakpoint;
     this.currentBrewer = $event.value;
+    this.beerStorageService.selectedBrewer = this.currentBrewer;
     this.updateBeersList();
   }
 

@@ -11,7 +11,7 @@
   </mat-slider>
 
   <mat-form-field>
-    <mat-select placeholder="Select theme" (selectionChange)="setTheme($event)">
+    <mat-select placeholder="Select theme" (selectionChange)="setTheme($event)" [value]="currentThemeField">
       <mat-option value="dark">dark</mat-option>
       <mat-option value="light">light</mat-option>
     </mat-select>
@@ -24,7 +24,7 @@
       <mat-option value="type">type</mat-option>
     </mat-select>
   </mat-form-field>
-  <div>
+  <div class="OptionsDialog__button">
     <app-button label="Close" (action)="cancel()"></app-button>
   </div>
 </div>

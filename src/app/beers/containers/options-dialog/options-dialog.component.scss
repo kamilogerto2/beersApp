@@ -1,4 +1,9 @@
 .OptionsDialog {
   display: flex;
   flex-direction: column;
+  width: 350px;
+}
+
+.OptionsDialog__button {
+  text-align: center;
 }

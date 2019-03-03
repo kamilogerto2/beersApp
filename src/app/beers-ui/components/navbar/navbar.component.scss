@@ -14,3 +14,11 @@
   font-weight: 600;
   font-size: 24px;
 }
+
+::ng-deep .dark .Navbar {
+  background-color: map_get($colors, 'black');
+}
+
+::ng-deep .dark .Navbar__label {
+  color: map_get($colors, 'white');
+}

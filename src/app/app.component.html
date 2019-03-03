@@ -1,2 +1,4 @@
-<app-navbar [label]="title" (options)="openOptions()"></app-navbar>
-<app-beers-layout></app-beers-layout>
+<div [ngClass]="theme">
+  <app-navbar [label]="title" (options)="openOptions()"></app-navbar>
+  <app-beers-layout></app-beers-layout>
+</div>

@@ -20,7 +20,6 @@ export class BeerService {
     this.beerRepository.getBeers()
       .pipe(
         take(1),
-        tap(beersList => console.log(beersList)),
         tap(beersList => this.beerStore.set(beersList)),
         tap(beersList => this.brewerService.setBrewers(this.getBrewersFromList(beersList))),
         // catchError(() => of(this.message.error('Cannot get the project - please try again')))

@@ -16,3 +16,8 @@
     cursor: pointer;
   }
 }
+
+::ng-deep .dark .Button {
+  background-color: map_get($colors, 'white');
+  color: black;
+}

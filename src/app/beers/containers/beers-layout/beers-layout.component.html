@@ -1,5 +1,3 @@
 <div class="BeersLayout">
-  <app-beers-list></app-beers-list>
-  <app-beers-list></app-beers-list>
-  <app-beers-list></app-beers-list>
+  <app-beers-list *ngFor="let column of columnsArray; index as i;" [beerListIndex]="i"></app-beers-list>
 </div>
