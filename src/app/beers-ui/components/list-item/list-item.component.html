@@ -2,8 +2,10 @@
   <img
     *ngIf="item && item.image_url"
     class="ListItem__image"
+    [ngStyle]="{cursor: !isImageError ? 'pointer' : 'default'}"
     [src]="!isImageError ? item.image_url : placeholderPath"
     (error)="setDefaultPic()"
+    (click)="previewImage()"
   >
   <div class="ListItem__property" *ngFor="let property of displayedProperties">
     <p class="ListItem__property-name">{{property.toLowerCase()}}</p>

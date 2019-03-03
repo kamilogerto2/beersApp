@@ -7,4 +7,11 @@ export default sandboxOf(ButtonComponent)
     context: {
       text: 'Sample button',
     }
+  })
+  .add('dark', {
+    template: `<div class="dark"><app-button [label]="text"></app-button></div>`,
+    context: {
+      text: 'Sample button',
+    }
   });
+

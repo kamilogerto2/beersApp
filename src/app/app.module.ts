@@ -6,7 +6,7 @@ import { SharedModule } from './shared/shared.module';
 import { BeersUiModule } from './beers-ui/beers-ui.module';
 import { BeersLayoutComponent } from './beers/containers/beers-layout/beers-layout.component';
 import { OptionsDialogComponent } from './beers/containers/options-dialog/options-dialog.component';
-import { GestureConfig } from '@angular/material';
+import { GestureConfig, MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { GestureConfig } from '@angular/material';
     SharedModule,
     BrowserModule,
     BeersUiModule,
+    MatDialogModule,
   ],
   entryComponents: [
     OptionsDialogComponent

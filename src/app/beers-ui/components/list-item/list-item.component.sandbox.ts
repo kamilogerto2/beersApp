@@ -29,6 +29,16 @@ export default sandboxOf(ListItemComponent)
       properties: mockedProperties,
     }
   })
+  .add('dark version', {
+    template: `<div class="dark"><app-list-item [item]="item" [displayedProperties]="properties"></app-list-item></div>`,
+    context: {
+      item: {
+        ...mockedItem,
+        image_url: 'https://podarunkowo.pl/6779-large_default/szklanka-na-piwo-jego-wysokosc-super-tata.jpg',
+      },
+      properties: mockedProperties,
+    }
+  })
   .add('with long property', {
     template: `<app-list-item [item]="item" [displayedProperties]="properties"></app-list-item>`,
     context: {

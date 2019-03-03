@@ -9,3 +9,9 @@ export default sandboxOf(NavbarComponent, { declarations: [ButtonComponent] })
       label: 'Beers App',
     },
   })
+  .add('dark',  {
+    template: `<div class="dark"><app-navbar [label]="label"></app-navbar></div>`,
+    context: {
+      label: 'Beers App',
+    },
+  });
