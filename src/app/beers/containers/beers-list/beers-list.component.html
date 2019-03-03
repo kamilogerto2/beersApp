@@ -14,5 +14,5 @@
     [displayedProperties]="displayedProperties"
   ></app-list-item>
 
-  <app-button class="BeersList__button" label="Load more" (action)="loadMoreResults()"></app-button>
+  <app-button *ngIf="hasMoreItems" class="BeersList__button" label="Load more" (action)="loadMoreResults()"></app-button>
 </div>

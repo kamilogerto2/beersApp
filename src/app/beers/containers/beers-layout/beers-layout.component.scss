@@ -1,5 +1,6 @@
 .BeersLayout {
-  width: 1200px;
   margin: 40px auto;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

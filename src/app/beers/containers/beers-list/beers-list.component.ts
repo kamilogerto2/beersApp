@@ -24,6 +24,7 @@ export class BeersListComponent implements OnInit, OnDestroy {
   currentLimit: number;
   displayedProperties = ['name', 'price', 'type'];
   unsubscribe$ = new Subject();
+  hasMoreItems = true;
 
   constructor(
     private beerService: BeerService,
@@ -60,7 +61,10 @@ export class BeersListComponent implements OnInit, OnDestroy {
         sortByOrder: Order.ASC,
       })
       .pipe(
-        filter(brewers => !!brewers.length),
+        filter(beers => !!beers.length),
+        tap((beers) => {
+          this.hasMoreItems = beers.length === this.currentLimit;
+        }),
         take(1),
       );
   }
