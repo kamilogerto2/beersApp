@@ -1,5 +1,6 @@
 import { sandboxOf } from 'angular-playground';
 import { ListItemComponent } from './list-item.component';
+import { MatDialogModule } from '@angular/material';
 
 const mockedProperties = ['name', 'price', 'type'];
 const mockedItem = {
@@ -8,7 +9,7 @@ const mockedItem = {
   type: 'lager',
 };
 
-export default sandboxOf(ListItemComponent)
+export default sandboxOf(ListItemComponent, { imports: [MatDialogModule] })
   .add('without image and properties', {
     template: `<app-list-item></app-list-item>`
   })

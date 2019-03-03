@@ -1,7 +1,7 @@
 import { BeerStore } from './beer.store';
 import { Injectable } from '@angular/core';
 import { BeerRepository } from '../../services/beer.repository';
-import { catchError, take, tap } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { BrewerService } from '../brewers';
 
 @Injectable({
@@ -22,7 +22,6 @@ export class BeerService {
         take(1),
         tap(beersList => this.beerStore.set(beersList)),
         tap(beersList => this.brewerService.setBrewers(this.getBrewersFromList(beersList))),
-        // catchError(() => of(this.message.error('Cannot get the project - please try again')))
       ).subscribe();
   }
 

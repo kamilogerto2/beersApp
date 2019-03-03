@@ -27,10 +27,6 @@ export class OptionsDialogComponent implements OnInit {
     this.currentThemeField = this.themingService.currentTheme;
   }
 
-  cancel() {
-    this.dialogRef.close();
-  }
-
   changePaginationLimit($event) {
     this.paginationService.currentLimitBreakpoint = $event.value;
   }
@@ -41,5 +37,9 @@ export class OptionsDialogComponent implements OnInit {
 
   setTheme($event) {
     this.themingService.currentTheme = $event.value;
+  }
+
+  cancel() {
+    this.dialogRef.close();
   }
 }

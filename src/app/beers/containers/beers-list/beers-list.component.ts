@@ -77,7 +77,7 @@ export class BeersListComponent implements OnInit, OnDestroy {
     this.updateBeersList();
   }
 
-  trackBeer(index, item) {
+  trackBeer(index, item): string {
     return item.beer_id;
   }
 
