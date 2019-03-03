@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BeerQuery, BeerService, Brewer } from '../../state/beers';
 import { Beer, BrewerQuery } from '../../state/brewers';
 import { Observable, Subject } from 'rxjs';
-import { filter, map, take, takeUntil, tap, toArray } from 'rxjs/operators';
+import { filter, take, takeUntil, tap } from 'rxjs/operators';
 import { PaginationService } from '../../../shared/services/pagination.service';
 import { Order } from '@datorama/akita';
 import { SortingService } from '../../../shared/services/sorting.service';
@@ -33,6 +33,7 @@ export class BeersListComponent implements OnInit, OnDestroy {
     private paginationService: PaginationService,
     private sortingService: SortingService,
     private beerStorageService: BeerStorageService,
+    private ref: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
@@ -53,6 +54,8 @@ export class BeersListComponent implements OnInit, OnDestroy {
   }
 
   updateBeersList() {
+    this.ref.markForCheck();
+
     this.beers$ = this.beerQuery
       .selectAll({
         limitTo: this.currentLimit,
